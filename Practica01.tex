@@ -1,0 +1,434 @@
+\documentclass{report}
+\usepackage{ecj,palatino,epsfig,latexsym,natbib}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{lmodern}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{enumerate}
+\usepackage{graphicx} % graficos
+\usepackage{multirow, array} % para las tablas
+\usepackage{listings}
+
+\parskip=0.00in
+
+\begin{document}
+
+\ecjHeader{1}{1}{}{}{45-character paper description goes here}{Jorge Alberto López Guevara \hspace{1cm} 1809630}
+\title{\bf Simulación \\ Práctica 01} 
+
+\begin{titlepage}
+\centering
+{\bfseries\LARGE Universidad Autónoma de Nuevo León \par}
+\vspace{1cm}
+{\scshape\Large Facultad de Ciencias Físico Matemáticas \par}
+\vspace{3cm}
+{\scshape\Huge Simulación \par}
+\vspace{3cm}
+{\itshape\Large Práctica 01 \par}
+\vfill
+{\Large Autor: \par}
+{\Large Jorge Alberto López Guevara \hspace{1cm} 1809630 \par}
+\vfill
+{\Large 5 de Marzo de 2021 \par}
+\end{titlepage}
+
+\newpage
+
+
+\noindent \Large \textbf{Introducción.} \\
+
+\noindent En el presente reporte se expondrá el calculo de una integral con el método de Monte Carlo. Por lo que se iniciará con exponer cuál es dicho método y en que consiste.\\
+
+\noindent Por otra parte, se utilizará un programa elabrado en R donde se implementa dicho método. Dicho método se utilizará para calcular la siguiente integral:
+$$\int_{3}^{7}\frac{1}{e^{x}+e^{-x}}dx$$
+
+\noindent Por consiguiente, se analizará el resultado obtenido por el programa en R y se comparara con el resultado de la integral obtenido por Wolfram.
+
+\newpage
+\noindent \Large \textbf{Objetivo.} \\
+
+\noindent El próposito de este reporte de investigación es calcular el valor de la siguiente integral:
+$$\int_{3}^{7}\frac{1}{e^{x}+e^{-x}}dx$$
+
+\noindent Se sabe por el software Wolfram que la siguiente integral:
+$$\int_{3}^{7}\frac{1}{e^{x}+e^{-x}}dx \approx  0.048834$$
+
+\noindent Por lo que buscamos aproximar el valor de la integral obtenida en esta investigación al valor dado por el software Wolfram en al menos 6 digitos. \\
+
+
+\noindent \Large \textbf{Metodología} \\
+
+\noindent Se procederá por analizar el programa proporcionado por el profesor Moreno, el cual se mostrará a continuación:
+
+\begin{table}[h]
+    \resizebox{8.5cm}{!}{
+    \lstinputlisting[language = R]{Practica.R}
+    }
+	\caption{Código en R del método Monte-Carlo.}
+	\label{cod:montearloR}
+\end{table}
+
+ \noindent En el que se correrán 30 réplicas con distintos conjuntos de tres tamaños de muestras, con lo que se analizará la moda y la mínima cantidad de dígitos en los que coincide el valor de la integral dado por el software de Wolfram. \\
+
+
+\noindent \Large \textbf{Marco teorico.} \\
+
+\noindent \Large \textbf{Método Monte Carlo.} \\
+
+\noindent El profesor Moreno (2021) define el método como para el calculo de la integra utilizaremos lo siguiente:
+$$\int_{a}^{b}f(x)dx \approx \sum_{i=1}^{k}\frac{(b-a)\cdot g(a+(b-a)u_{i})}{k}$$
+para $k$ suficientemente grande y $u_{i}\sim U(0,1)$. \\
+
+
+\noindent \Large \textbf{Resultados.} \\
+
+\noindent Tomando en cuenta un conjunto de 3 muestras de cantidad 1000, 10000 y 100000 con 30 replicas cada una se obtuvó la siguiente tabla, donde se muestra el resultado de la integral obtenido por el código en R y la cantidad de digitos en los que el resultado del código coincide con el resultado obtenido por el software Wolfram: \\
+
+\noindent Se experimentó con 3 muestras de las cuales se realizaron 30 replicas, esto con motivo de ver la aproximación de digitos del codigo en R comparado con el resultado del software Wolfram. \\
+
+\begin{table}[htpb]
+  \centering
+  \resizebox{4cm}{!}{
+    \begin{tabular}{rrrrr}
+          & \multicolumn{1}{l}{replica} & \multicolumn{1}{l}{muestra} & \multicolumn{1}{l}{integral} & \multicolumn{1}{l}{digitos} \\
+    1     & 1     & 1000  & 0.05036377 & 1 \\
+    2     & 2     & 1000  & 0.04670658 & 1 \\
+    3     & 3     & 1000  & 0.0514437 & 1 \\
+    4     & 4     & 1000  & 0.04981152 & 1 \\
+    5     & 5     & 1000  & 0.04802483 & 1 \\
+    6     & 6     & 1000  & 0.04724974 & 1 \\
+    7     & 7     & 1000  & 0.0495537 & 1 \\
+    8     & 8     & 1000  & 0.04767464 & 1 \\
+    9     & 9     & 1000  & 0.04950455 & 1 \\
+    10    & 10    & 1000  & 0.05015314 & 1 \\
+    11    & 11    & 1000  & 0.04778045 & 1 \\
+    12    & 12    & 1000  & 0.04646721 & 1 \\
+    13    & 13    & 1000  & 0.04742281 & 1 \\
+    14    & 14    & 1000  & 0.04857532 & 2 \\
+    15    & 15    & 1000  & 0.04797632 & 1 \\
+    16    & 16    & 1000  & 0.04907035 & 2 \\
+    17    & 17    & 1000  & 0.04977281 & 1 \\
+    18    & 18    & 1000  & 0.04956612 & 1 \\
+    19    & 19    & 1000  & 0.05223633 & 1 \\
+    20    & 20    & 1000  & 0.04838463 & 1 \\
+    21    & 21    & 1000  & 0.04572419 & 1 \\
+    22    & 22    & 1000  & 0.05034889 & 1 \\
+    23    & 23    & 1000  & 0.04832877 & 1 \\
+    24    & 24    & 1000  & 0.04750452 & 1 \\
+    25    & 25    & 1000  & 0.05013492 & 1 \\
+    26    & 26    & 1000  & 0.04726853 & 1 \\
+    27    & 27    & 1000  & 0.05081324 & 1 \\
+    28    & 28    & 1000  & 0.04937326 & 2 \\
+    29    & 29    & 1000  & 0.04918768 & 2 \\
+    30    & 30    & 1000  & 0.04839792 & 1 \\
+    \end{tabular}
+    }
+    \caption{Resultados de muestra 1000 obtenidas con R}
+  \label{Resultados de de cada muestra obtenidas con R}
+\end{table}
+
+
+\begin{table}[htpb]
+  \centering
+  \resizebox{4cm}{!}{
+    \begin{tabular}{rrrrr}
+          & \multicolumn{1}{l}{replica} & \multicolumn{1}{l}{muestra} & \multicolumn{1}{l}{integral} & \multicolumn{1}{l}{digitos} \\
+    31    & 1     & 10000 & 0.04897679 & 2 \\
+    32    & 2     & 10000 & 0.04829637 & 1 \\
+    33    & 3     & 10000 & 0.04908964 & 2 \\
+    34    & 4     & 10000 & 0.04811369 & 1 \\
+    35    & 5     & 10000 & 0.04930238 & 2 \\
+    36    & 6     & 10000 & 0.04837806 & 1 \\
+    37    & 7     & 10000 & 0.0485413 & 2 \\
+    38    & 8     & 10000 & 0.0489902 & 2 \\
+    39    & 9     & 10000 & 0.04879052 & 3 \\
+    40    & 10    & 10000 & 0.04841055 & 1 \\
+    41    & 11    & 10000 & 0.04876368 & 3 \\
+    42    & 12    & 10000 & 0.04799885 & 1 \\
+    43    & 13    & 10000 & 0.04925458 & 2 \\
+    44    & 14    & 10000 & 0.04828328 & 1 \\
+    45    & 15    & 10000 & 0.0483409 & 1 \\
+    46    & 16    & 10000 & 0.04910487 & 2 \\
+    47    & 17    & 10000 & 0.04785006 & 1 \\
+    48    & 18    & 10000 & 0.04846508 & 1 \\
+    49    & 19    & 10000 & 0.04873624 & 2 \\
+    50    & 20    & 10000 & 0.04965625 & 1 \\
+    51    & 21    & 10000 & 0.04887919 & 2 \\
+    52    & 22    & 10000 & 0.04926852 & 2 \\
+    53    & 23    & 10000 & 0.04802037 & 1 \\
+    54    & 24    & 10000 & 0.04848488 & 1 \\
+    55    & 25    & 10000 & 0.04889191 & 2 \\
+    56    & 26    & 10000 & 0.04912619 & 2 \\
+    57    & 27    & 10000 & 0.04828955 & 1 \\
+    58    & 28    & 10000 & 0.04871792 & 2 \\
+    59    & 29    & 10000 & 0.04832713 & 1 \\
+    60    & 30    & 10000 & 0.04924338 & 2 \\
+    \end{tabular}
+    }
+    \caption{Resultados de muestra 10000 obtenidas con R}
+  \label{Resultados de de cada muestra obtenidas con R}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \resizebox{4cm}{!}{
+    \begin{tabular}{rrrrr}
+          & \multicolumn{1}{l}{replica} & \multicolumn{1}{l}{muestra} & \multicolumn{1}{l}{integral} & \multicolumn{1}{l}{digitos} \\
+    61    & 1     & 1.00E+05 & 0.04903628 & 2 \\
+    62    & 2     & 1.00E+05 & 0.04866389 & 2 \\
+    63    & 3     & 1.00E+05 & 0.04882885 & 4 \\
+    64    & 4     & 1.00E+05 & 0.04876271 & 3 \\
+    65    & 5     & 1.00E+05 & 0.04915001 & 2 \\
+    66    & 6     & 1.00E+05 & 0.04902985 & 2 \\
+    67    & 7     & 1.00E+05 & 0.0485261 & 2 \\
+    68    & 8     & 1.00E+05 & 0.04866813 & 2 \\
+    69    & 9     & 1.00E+05 & 0.04872305 & 2 \\
+    70    & 10    & 1.00E+05 & 0.04901645 & 2 \\
+    71    & 11    & 1.00E+05 & 0.04878922 & 3 \\
+    72    & 12    & 1.00E+05 & 0.04858949 & 2 \\
+    73    & 13    & 1.00E+05 & 0.04898119 & 2 \\
+    74    & 14    & 1.00E+05 & 0.04899642 & 2 \\
+    75    & 15    & 1.00E+05 & 0.04900178 & 2 \\
+    76    & 16    & 1.00E+05 & 0.04875661 & 3 \\
+    77    & 17    & 1.00E+05 & 0.04882446 & 3 \\
+    78    & 18    & 1.00E+05 & 0.04889986 & 2 \\
+    79    & 19    & 1.00E+05 & 0.04898809 & 2 \\
+    80    & 20    & 1.00E+05 & 0.04893023 & 2 \\
+    81    & 21    & 1.00E+05 & 0.04879039 & 3 \\
+    82    & 22    & 1.00E+05 & 0.04889673 & 2 \\
+    83    & 23    & 1.00E+05 & 0.04866407 & 2 \\
+    84    & 24    & 1.00E+05 & 0.04851629 & 2 \\
+    85    & 25    & 1.00E+05 & 0.04909269 & 2 \\
+    86    & 26    & 1.00E+05 & 0.04886322 & 2 \\
+    87    & 27    & 1.00E+05 & 0.04854783 & 2 \\
+    88    & 28    & 1.00E+05 & 0.04880185 & 3 \\
+    89    & 29    & 1.00E+05 & 0.04850682 & 2 \\
+    90    & 30    & 1.00E+05 & 0.04881429 & 3 \\
+    \end{tabular}
+    }
+    \caption{Resultados de muestra 100000 obtenidas con R}
+  \label{Resultados de de cada muestra obtenidas con R}
+\end{table} \\
+
+\newpage
+
+\noindent Como se observa en Cuadro 2, donde se muestran los resultados de las muestras de 1000, en la mayor parte de los resultados obtenidos por el codigo de R se obtuvó una aproximación de 1 digito como mínimo. Por otra parte, en Cuadro 3, donde se muestran los resultados de las muestras de 10000, se obtuvó una aproximación de 1 y 2 digitos casi en la misma cantidad de veces. En cambio, en Cuadro 4, donde se muestran los resultados de las muestras de 100000, muestra una aproximación de 2 digitos en la mayoría de los casos. \\
+
+\noindent Para una vista óptima de este hecho se obtuvó la siguiente tabla donde se analizaron la media, la moda, la mediana, etre otros aspectos: \\
+
+\begin{table}[htpb]
+  \centering
+    \begin{tabular}{rrrrr} \hline
+    \multicolumn{1}{l}{muestra} & \multicolumn{1}{l}{min} & \multicolumn{1}{l}{media} & \multicolumn{1}{l}{mediana} & \multicolumn{1}{l}{moda} \\ \hline
+    1000  & 1     & 1.13333333 & 1     & 1 \\ \hline
+    10000 & 1     & 1.6   & 2     & 2 \\ \hline
+    1.00E+05 & 2     & 2.3   & 2     & 2 \\ \hline
+    \end{tabular}
+    \caption{Análisis de tendencia central para el primer conjunto de muestras}
+    \label{Análisis de tendencia central para todas las muestras}
+\end{table}
+
+\noindent En Cuadro 5, muestra que para una muestra de tamaño 1000 como mínimo obtuvó un digito de aproximación respecto al resultado del software Wolfram. Además, se muestra que la mayor cantidad de digitos que concordaron con el resultado obtenido por Wolfram fue 1. Además, para una muestra de tamaño 10000, se obtuvó como mínimo un digito de aproximación, pero se obtuvó una mayor cantidad de dos digitos de aproximación. Por otro lado, para una muestra de tamaño 100000 se obtuvó como mínimo una aproximación de dos digito, además de que fue la aproximación que mas se repitió. \\
+
+\noindent Ahora se analizará el segundo conjunto de muestras en las cuales se tendrán muestras de tamaños $10^{6}$, $10^{7}$ y $10^{8}$, se tomarán en cuenta 30 réplicas de cada muestra.
+
+\begin{table}[htpb]
+  \centering
+  \resizebox{4cm}{!}{
+    \begin{tabular}{rrrrr}
+          & \multicolumn{1}{l}{replica} & \multicolumn{1}{l}{muestra} & \multicolumn{1}{l}{integral} & \multicolumn{1}{l}{digitos} \\
+    1     & 1     & 1.00E+06 & 0.04877357 & 3 \\
+    2     & 2     & 1.00E+06 & 0.04877613 & 3 \\
+    3     & 3     & 1.00E+06 & 0.04880827 & 3 \\
+    4     & 4     & 1.00E+06 & 0.04871731 & 2 \\
+    5     & 5     & 1.00E+06 & 0.04886609 & 2 \\
+    6     & 6     & 1.00E+06 & 0.04886168 & 2 \\
+    7     & 7     & 1.00E+06 & 0.04887492 & 2 \\
+    8     & 8     & 1.00E+06 & 0.04890629 & 2 \\
+    9     & 9     & 1.00E+06 & 0.0487066 & 2 \\
+    10    & 10    & 1.00E+06 & 0.04889329 & 2 \\
+    11    & 11    & 1.00E+06 & 0.04889787 & 2 \\
+    12    & 12    & 1.00E+06 & 0.04882036 & 3 \\
+    13    & 13    & 1.00E+06 & 0.04876657 & 3 \\
+    14    & 14    & 1.00E+06 & 0.0488479 & 3 \\
+    15    & 15    & 1.00E+06 & 0.04887885 & 2 \\
+    16    & 16    & 1.00E+06 & 0.04889155 & 2 \\
+    17    & 17    & 1.00E+06 & 0.04883874 & 3 \\
+    18    & 18    & 1.00E+06 & 0.04882126 & 3 \\
+    19    & 19    & 1.00E+06 & 0.04887075 & 2 \\
+    20    & 20    & 1.00E+06 & 0.04884858 & 3 \\
+    21    & 21    & 1.00E+06 & 0.04873717 & 2 \\
+    22    & 22    & 1.00E+06 & 0.04880305 & 3 \\
+    23    & 23    & 1.00E+06 & 0.04880881 & 3 \\
+    24    & 24    & 1.00E+06 & 0.04880714 & 3 \\
+    25    & 25    & 1.00E+06 & 0.04891326 & 2 \\
+    26    & 26    & 1.00E+06 & 0.04882356 & 3 \\
+    27    & 27    & 1.00E+06 & 0.04878556 & 3 \\
+    28    & 28    & 1.00E+06 & 0.04877714 & 3 \\
+    29    & 29    & 1.00E+06 & 0.04883705 & 3 \\
+    30    & 30    & 1.00E+06 & 0.04886426 & 2 \\
+    \end{tabular}
+    }
+    \caption{Resultados de muestra $10^{6}$ obtenidas con R}
+    \label{Resultados de muestra $10^{6}$ obtenidas con R}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \resizebox{4cm}{!}{
+    \begin{tabular}{rrrrr}
+          & \multicolumn{1}{l}{replica} & \multicolumn{1}{l}{muestra} & \multicolumn{1}{l}{integral} & \multicolumn{1}{l}{digitos} \\
+    31    & 1     & 1.00E+07 & 0.04883376 & 5 \\
+    32    & 2     & 1.00E+07 & 0.04880883 & 3 \\
+    33    & 3     & 1.00E+07 & 0.04883437 & 5 \\
+    34    & 4     & 1.00E+07 & 0.04884743 & 3 \\
+    35    & 5     & 1.00E+07 & 0.04883211 & 4 \\
+    36    & 6     & 1.00E+07 & 0.04886212 & 2 \\
+    37    & 7     & 1.00E+07 & 0.04880859 & 3 \\
+    38    & 8     & 1.00E+07 & 0.04884554 & 3 \\
+    39    & 9     & 1.00E+07 & 0.04882782 & 4 \\
+    40    & 10    & 1.00E+07 & 0.04886585 & 2 \\
+    41    & 11    & 1.00E+07 & 0.0488415 & 3 \\
+    42    & 12    & 1.00E+07 & 0.0488243 & 3 \\
+    43    & 13    & 1.00E+07 & 0.04882616 & 4 \\
+    44    & 14    & 1.00E+07 & 0.0488713 & 2 \\
+    45    & 15    & 1.00E+07 & 0.04887899 & 2 \\
+    46    & 16    & 1.00E+07 & 0.04883033 & 4 \\
+    47    & 17    & 1.00E+07 & 0.04883074 & 4 \\
+    48    & 18    & 1.00E+07 & 0.04884203 & 3 \\
+    49    & 19    & 1.00E+07 & 0.04885203 & 2 \\
+    50    & 20    & 1.00E+07 & 0.04884436 & 3 \\
+    51    & 21    & 1.00E+07 & 0.04882992 & 4 \\
+    52    & 22    & 1.00E+07 & 0.0488607 & 2 \\
+    53    & 23    & 1.00E+07 & 0.04886995 & 2 \\
+    54    & 24    & 1.00E+07 & 0.04885543 & 2 \\
+    55    & 25    & 1.00E+07 & 0.04884184 & 3 \\
+    56    & 26    & 1.00E+07 & 0.0488294 & 4 \\
+    57    & 27    & 1.00E+07 & 0.04887419 & 2 \\
+    58    & 28    & 1.00E+07 & 0.04883563 & 3 \\
+    59    & 29    & 1.00E+07 & 0.04881701 & 3 \\
+    60    & 30    & 1.00E+07 & 0.04882477 & 3 \\
+    \end{tabular}
+    }
+    \caption{Resultados de muestra $10^{7}$ obtenidas con R}
+    \label{Resultados de muestra $10^{7}$ obtenidas con R}
+\end{table}
+
+\newpage
+
+\begin{table}[htpb]
+  \centering
+  \resizebox{4cm}{!}{
+    \begin{tabular}{rrrrr}
+          & \multicolumn{1}{l}{replica} & \multicolumn{1}{l}{muestra} & \multicolumn{1}{l}{integral} & \multicolumn{1}{l}{digitos} \\
+    61    & 1     & 1.00E+08 & 0.04883709 & 3 \\
+    62    & 2     & 1.00E+08 & 0.04883449 & 5 \\
+    63    & 3     & 1.00E+08 & 0.04883544 & 3 \\
+    64    & 4     & 1.00E+08 & 0.04884006 & 3 \\
+    65    & 5     & 1.00E+08 & 0.04883379 & 5 \\
+    66    & 6     & 1.00E+08 & 0.04882783 & 4 \\
+    67    & 7     & 1.00E+08 & 0.04882988 & 4 \\
+    68    & 8     & 1.00E+08 & 0.04883146 & 4 \\
+    69    & 9     & 1.00E+08 & 0.04884791 & 3 \\
+    70    & 10    & 1.00E+08 & 0.04882988 & 4 \\
+    71    & 11    & 1.00E+08 & 0.04884119 & 3 \\
+    72    & 12    & 1.00E+08 & 0.04882295 & 3 \\
+    73    & 13    & 1.00E+08 & 0.04883344 & 4 \\
+    74    & 14    & 1.00E+08 & 0.04882884 & 4 \\
+    75    & 15    & 1.00E+08 & 0.04883282 & 4 \\
+    76    & 16    & 1.00E+08 & 0.04884158 & 3 \\
+    77    & 17    & 1.00E+08 & 0.04883872 & 3 \\
+    78    & 18    & 1.00E+08 & 0.04883229 & 4 \\
+    79    & 19    & 1.00E+08 & 0.04883756 & 3 \\
+    80    & 20    & 1.00E+08 & 0.04883133 & 4 \\
+    81    & 21    & 1.00E+08 & 0.04883453 & 4 \\
+    82    & 22    & 1.00E+08 & 0.04882649 & 4 \\
+    83    & 23    & 1.00E+08 & 0.04883507 & 3 \\
+    84    & 24    & 1.00E+08 & 0.0488212 & 3 \\
+    85    & 25    & 1.00E+08 & 0.04883394 & 5 \\
+    86    & 26    & 1.00E+08 & 0.04883793 & 3 \\
+    87    & 27    & 1.00E+08 & 0.04883331 & 4 \\
+    88    & 28    & 1.00E+08 & 0.04883082 & 4 \\
+    89    & 29    & 1.00E+08 & 0.04884454 & 3 \\
+    90    & 30    & 1.00E+08 & 0.04883361 & 5 \\
+    \end{tabular}
+    }
+    \caption{Resultados de muestra $10^{8}$ obtenidas con R}
+    \label{Resultados de muestra $10^{8}$ obtenidas con R}
+\end{table}
+
+\noindent En Cuadro 6, se puede observar que la mayor cantidad de digitos que coinciden con el resultado en Wolfram es de tres digitos, aunque también se tiene una gran cantidadde resultados que coinciden en dos digitos. En  Cuadro 7, se tiene que una menor cantidad de resultados que coinciden en dos digitos, pero los digitos en los que mas veces coinciden es de tres digitos. En cambio, para Cuadro 8, se observa que como minimo el código en R obtuvó una aproximación de tres digitos, y a su vez, es la aproximación que mas se presentó en la experimentación, pero también se obtuvó una coincidencia de cuatro y cinco digitos. \\
+
+\begin{table}[h]
+  \centering
+    \begin{tabular}{rrrrr} \hline
+    \multicolumn{1}{l}{muestra} & \multicolumn{1}{l}{min} & \multicolumn{1}{l}{media} & \multicolumn{1}{l}{mediana} & \multicolumn{1}{l}{moda} \\ \hline
+    1.00E+06 & 2     & 2.53333333 & 3     & 3 \\ \hline
+    1.00E+07 & 2     & 3.06666667 & 3     & 3 \\ \hline
+    1.00E+08 & 3     & 3.7   & 4     & 3 \\ \hline
+    \end{tabular}
+    \caption{Análisis de tendencia central para el segundo conjunto de muestras}
+    \label{Análisis de tendencia central para el segundo conjunto de muestras}
+\end{table}
+
+\noindent Como se observa en Cuadro 9, para una muestra de tamaño $10^{6}$ se tiene que minimo dos digitos que coinciden y la cantidad de digitos que se repitió fueron tres digitos. Por otro lado, para una muestra de $10^{7}$ se obtuvó como minimo dos digitos de aproximación y la cantidad de digitos que más se presentó fue la de tres digitos. Además, para una muestra de $10^{8}$, se obtuvó como minimo una aproximación en tres digitos, y a su vez, fue el digito que mas se presentó. \\
+
+
+\noindent \Large \textbf{Análisis de resultados.} \\
+
+\noindent Para el análisis de los resultados del primer conjunto de muestras, se observarán las gráficas de violín de las aproximaciones, las cuales muestran la distribución en que coinciden los digitos. \\
+
+\newpage
+
+\begin{figure}[htpb]
+\centering
+\resizebox{10cm}{!}{
+\includegraphics{muestra 1.png}
+}
+\caption{Gráfica de distribución de coincidencia de digitos para el primer conjunto de muestras.}
+\end{figure} \\
+
+\noindent Como se observa en la gráfica de violines, al tener una muestra  de tamaño 1000, tenemos que a lo menos tenemos minimo un digito de precisión, y a su vez, tenemos una mayor cantidad de resultados con un digito coincidente. Por otro lado, al considerar la muestra de tamaño 10000, pas algo similar que con la muestra de tamaño 10000, pero esta vez tenemos una mayor cantidad de resultados con dos digitos de precisión. Por último, al tomar en cuenta la muestra de tamaño 100000, se observa que se tiene como minimo dos digitos de precisión y son la mayoría los resultados con dos digitos de coincidencia. \\
+
+\noindent Además, para visualizar los digítos de coincidencia entre el resultado de obtenido en esta investigación y el resultado obtenido por Wolfram se mostrarán las gráficas de violín, donde se muestra la distribución de los digitos presentados en cada muestra para el segundo conjunto de muestras. \\
+
+\newpage
+
+\begin{figure}[htpb]
+\centering
+\resizebox{10cm}{!}{
+\includegraphics{muestra 2.png}
+}
+\caption{Gráfica de distribución de coincidencia de digitos para el segundo conjunto de muestras.}
+\end{figure} \\
+
+\noindent Como se observa en las gráficas anteriores, para una muestra de tamaño $10^{6}$ se puede ver que el número de dígitos en los que el valor de la integral obtenido en R es de mínimo dos, pero el mayor número de digitos en los que el código se aproximó fue de tres dígitos. Además, para una muestra de tamaño $10^{7}$ se obtuvo un mínimo de datos de dos dígitos de coincidencia, aunque el valor que más se presentó fue de tres dígitos de aproximación, pero también se obtuvó una aproximación de cuatro y cinco dígitos, siendo cuatro el más cercano a la aproximación de tres dígitos. Por otro lado, para una muestra de tamaño $10^{8}$, se obtuvó como mínimo una aproximación de tres dígitos, pero en esta ocasión se obtuvó una mayor cantidad de resultados en las que se aproximó en cuatro dígitos, al igual que en la muestra de tamaño $10^{7}$, en la muestra de tamaño $10^{8}$ se obtuvó una coincidencia de cinco dígitos. \\
+
+\newpage
+
+\noindent \Large \textbf{Conclusiones.} \\
+
+\noindent Como se observó en el apartado anterior, en el último conjunto de la muestra, la coincidencia en los dígitos del resultado de la integral obtenido con el código de R estaba creciendo de forma considerable.  \\
+
+\noindent Ya que para las muestras de tamaños $10^{3}$, $10^{4}$, $10^{6}$, $10^{8}$ se obtuvó una aproximación de 1, 2, 3 y 4 dígitos con respecto al resultado obtenido por Wolfram.\\
+
+\noindent Por lo que podemos hipotetizar que para una muestra de tamaño $10^{9}$, alcanzaría un mayor número de resultados que su apoximación fueran de cinco dígitos y si tomamos una muestra de tamaño $10^{10}$ el resultado sería el esperado, es decir que el mayor número de resultados obtenidos con el código de R tiene una aproximación de seis dígitos.
+
+
+\newpage
+
+\noindent \Large \textbf{Bibliografía.} \\
+
+\begin{itemize}
+    \item Moreno, Á. (2021). \textit{Práctica 1: Método Monte-Carlo}
+    
+    \item Wolfram Research, Inc. Mathematica, Version 12.2, 2020. URL https://www.wolframalpha.com/calculators/integral-calculator. Champaign,IL.
+    
+    \item https://github.com/JorgeLG46/Simulacion
+\end{itemize}
+
+
+
+\end{document}
